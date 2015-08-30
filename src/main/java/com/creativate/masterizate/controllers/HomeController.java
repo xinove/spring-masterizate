@@ -44,6 +44,8 @@ public class HomeController {
 		@RequestParam(value = "error", required = false) String error,
 		@RequestParam(value = "logout", required = false) String logout) {
  
+		logger.info("Comenzamos a consultar el tema");
+
 		ModelAndView model = new ModelAndView();
 		if (error != null) {
 			model.addObject("error", "Invalid username and password!");
