@@ -1,0 +1,90 @@
+create database masterizate;
+use masterizate;
+
+drop table user_roles;
+drop table users;
+CREATE  TABLE users (
+  id_user MEDIUMINT NOT NULL AUTO_INCREMENT,
+  username VARCHAR(45) NOT NULL ,
+  password VARCHAR(45) NOT NULL ,
+  enabled TINYINT NOT NULL DEFAULT 1 ,
+  id_cliente_fk	int(20), 
+  PRIMARY KEY (id_user, username));
+
+  
+CREATE TABLE user_roles (
+  user_role_id int(11) NOT NULL AUTO_INCREMENT,
+  username varchar(45) NOT NULL,
+  role varchar(45) NOT NULL,
+  PRIMARY KEY (user_role_id),
+  UNIQUE KEY uni_username_role (role,username));
+  
+CREATE  TABLE clients (
+  id_client MEDIUMINT NOT NULL AUTO_INCREMENT,
+  id_user_fk MEDIUMINT NOT NULL ,
+  name VARCHAR(45) NOT NULL ,
+  surname VARCHAR(45) NOT NULL ,
+  email VARCHAR(60) NOT NULL , 
+  adress VARCHAR(256) NOT NULL , 
+  subscription_date DATE NOT NULL , 
+  enabled TINYINT NOT NULL DEFAULT 1,
+  PRIMARY KEY (id_client));
+  
+CREATE  TABLE client_cvs (
+  id_client_fk MEDIUMINT NOT NULL,
+  id_cv_fk MEDIUMINT NOT NULL ,
+  enabled TINYINT NOT NULL DEFAULT 1,
+  PRIMARY KEY (id_client_fk, id_cv_fk)
+  );
+  
+CREATE  TABLE cvs (
+  id_cv MEDIUMINT NOT NULL AUTO_INCREMENT,
+  name VARCHAR(45) NOT NULL ,
+  PRIMARY KEY (id_cv));
+  
+CREATE  TABLE projects (
+  id_project MEDIUMINT NOT NULL AUTO_INCREMENT,
+  title VARCHAR(45) NOT NULL ,
+  description VARCHAR(600) NOT NULL ,
+  init_date DATE,
+  end_date DATE,
+  value INT NOT NULL, 
+  id_company_fk	MEDIUMINT NOT NULL,
+  PRIMARY KEY (id_project));
+
+CREATE TABLE companys (
+  id_company MEDIUMINT NOT NULL AUTO_INCREMENT,
+  name VARCHAR(45) NOT NULL ,
+  description VARCHAR(600) NOT NULL ,
+  subscription_date DATE NOT NULL , 
+  enabled TINYINT NOT NULL DEFAULT 1,
+  image MEDIUMBLOB,
+  id_category_fk MEDIUMINT NOT NULL DEFAULT 1,
+  PRIMARY KEY (id_company));
+
+CREATE TABLE courses (
+  id_course MEDIUMINT NOT NULL AUTO_INCREMENT,
+  name VARCHAR(45) NOT NULL ,
+  description VARCHAR(600) NOT NULL ,
+  subscription_date DATE NOT NULL , 
+  enabled TINYINT NOT NULL DEFAULT 1,
+  id_company_fk	MEDIUMINT NOT NULL,
+  id_valoration_fk MEDIUMINT NOT NULL DEFAULT 1,
+  id_category_fk MEDIUMINT NOT NULL DEFAULT 1,
+  PRIMARY KEY (id_course));  
+  
+CREATE TABLE COUNTRIES (
+  id_country MEDIUMINT NOT NULL AUTO_INCREMENT, 
+  country VARCHAR(100) NOT NULL 
+  );
+  
+CREATE TABLE PROVINCES (
+  id_province MEDIUMINT NOT NULL AUTO_INCREMENT, 
+  country VARCHAR(100) NOT NULL 
+  );  
+
+CREATE TABLE POPULATIONS (
+  id_population MEDIUMINT NOT NULL AUTO_INCREMENT, 
+  population VARCHAR(100) NOT NULL 
+  );
+ 

@@ -11,10 +11,10 @@ import javax.persistence.Id;
 import javax.persistence.UniqueConstraint;
 
 @Entity
-@Table(name = "clients", catalog = "masterizate", uniqueConstraints = {
+@Table(name = "companies", catalog = "masterizate", uniqueConstraints = {
 		@UniqueConstraint(columnNames = "id_cliente"),
 		@UniqueConstraint(columnNames = "id_usuario_fk") })
-public class Client {
+public class Company {
  
 	@Id
 	private String id;
@@ -25,8 +25,8 @@ public class Client {
 	String email;
 	String address;
 
-	public Client(){}
-    public Client( String idUser, String name, String surName, String email, 
+	public Company(){}
+    public Company( String idUser, String name, String surName, String email, 
     			   String address){
         this.idUser=idUser;
         this.name=name;
