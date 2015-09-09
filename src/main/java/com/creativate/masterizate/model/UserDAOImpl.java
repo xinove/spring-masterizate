@@ -1,5 +1,7 @@
 package com.creativate.masterizate.model;
 
+import java.util.List;
+
 import org.springframework.stereotype.Repository;
 
 import com.creativate.masterizate.model.objects.User;
@@ -20,11 +22,15 @@ public class UserDAOImpl extends CustomHibernateDaoSupport implements UserDAO {
 		getHibernateTemplate().delete(usuario);
 	}
 
+	public List<User> getAllUsers(){
+		
+		return null;
+	}
 	
-	/*public User findById(String stockCode){
+	public User findById(Integer idUser){
 		List list = getHibernateTemplate().find(
-                     "from Stock where stockCode=?",stockCode
+                     "from users where id_user=?",idUser
                 );
 		return (User)list.get(0);
-	}*/
+	}
 }

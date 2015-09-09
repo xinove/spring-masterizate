@@ -24,7 +24,7 @@ public class HomeController {
 	/**
 	 * Simply selects the home view to render by returning its name.
 	 */
-	@RequestMapping(value = "/", method = RequestMethod.GET)
+	/*@RequestMapping(value = "/", method = RequestMethod.GET)
 	public String home(Locale locale, Model model) {
 		logger.info("Welcome home! The client locale is {}.", locale);
 		
@@ -36,7 +36,7 @@ public class HomeController {
 		model.addAttribute("serverTime", formattedDate );
 		
 		return "home";
-	}
+	}*/
 	
 	//Spring Security see this :
 	@RequestMapping(value = "/login", method = RequestMethod.POST)
@@ -58,56 +58,4 @@ public class HomeController {
 		return model;
  
 	}
-	
-	//Spring Security see this :
-	@RequestMapping(value = "/register", method = RequestMethod.POST)
-	public ModelAndView register(
-		@RequestParam(value = "error", required = false) String error,
-		@RequestParam(value = "logout", required = false) String logout) {
- 
-		logger.info("Comenzamos a consultar el tema");
-
-		ModelAndView model = new ModelAndView();
-		if (error != null) {
-			model.addObject("error", "Invalid username and password!");
-		}
- 
-		if (logout != null) {
-			model.addObject("msg", "You've been logged out successfully.");
-		}
-		model.setViewName("lusuarios");
-		return model;
- 
-	}
-	//Spring Security see this :
-		@RequestMapping(value = "/register", method = RequestMethod.GET)
-		public ModelAndView registerGet(
-			@RequestParam(value = "error", required = false) String error,
-			@RequestParam(value = "logout", required = false) String logout) {
-	 
-			logger.info("Comenzamos a consultar el tema");
-
-			ModelAndView model = new ModelAndView();
-			if (error != null) {
-				model.addObject("error", "Invalid username and password!");
-			}
-	 
-			if (logout != null) {
-				model.addObject("msg", "You've been logged out successfully.");
-			}
-			model.setViewName("lusuarios");
-			return model;
-	 
-		}
-		
-		@RequestMapping(value = { "/helloworld**" }, method = RequestMethod.GET)
-		 public ModelAndView welcomePage() {
-			logger.info("Supongo que deberia entrar aki...");
-			 ModelAndView model = new ModelAndView();
-			 model.addObject("title", "Spring Security 3.2.3 Hello World Application");
-			 model.addObject("message", "Welcome Page !");
-			 model.setViewName("helloworld");
-			 return model;
-		 
-		 }
 }

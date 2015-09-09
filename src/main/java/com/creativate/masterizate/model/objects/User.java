@@ -18,9 +18,8 @@ public class User {
  
 	@Id
 	private String id;
-	String username;
- 
-	String password;
+	private String username;
+	private String password;
 
 	public User(){}
     public User( String username, String password){
