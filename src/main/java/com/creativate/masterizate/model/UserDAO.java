@@ -2,6 +2,8 @@ package com.creativate.masterizate.model;
 
 import java.util.List;
 
+import org.hibernate.SessionFactory;
+
 import com.creativate.masterizate.model.objects.User;
 
 
@@ -16,4 +18,8 @@ public interface UserDAO {
     public List<User> getAllUsers();
     
 	public User findById(Integer idUser);
+	
+	public SessionFactory getSessionFactory();
+	
+	public void setSessionFactory(SessionFactory sessionFactory);
 }

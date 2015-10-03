@@ -28,8 +28,8 @@ public class RegisterController {
 	
 	private static final Logger logger = LoggerFactory.getLogger(RegisterController.class);
 	
-	//@Autowired
-    //private UserService userManager;
+	@Autowired
+    private UserService userManager;
 	/*UserValidator userValidator;
 	
 	@Autowired
@@ -72,7 +72,8 @@ public class RegisterController {
 			usuario.setUsername(user);
 			usuario.setPassword(password);
 			
-			//userManager.addUser(usuario); 
+			userManager.addUser(usuario); 
+			
 			/*if (error != null) {
 				model.addObject("error", "Invalid username and password!");
 			}

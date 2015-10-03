@@ -5,7 +5,7 @@
     <param-value>
 			/WEB-INF/spring/root-context.xml,
 			/WEB-INF/spring-security.xml,
-			/WEB-INF/spring-database.xml
+			/WEB-INF/spring-location.xml
 		</param-value>
   </context-param>
   <listener>
