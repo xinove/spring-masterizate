@@ -1,8 +1,6 @@
 package com.creativate.masterizate.services;
 
-import org.springframework.stereotype.Repository;
 import com.creativate.masterizate.model.objects.User;
-import com.creativate.masterizate.util.CustomHibernateDaoSupport;
 
 import java.util.List;
  

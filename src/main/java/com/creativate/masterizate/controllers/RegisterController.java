@@ -8,14 +8,12 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
-import com.creativate.masterizate.model.UserDAO;
-import com.creativate.masterizate.model.UserDAOImpl;
+import com.creativate.masterizate.model.objects.Client;
 import com.creativate.masterizate.model.objects.User;
 import com.creativate.masterizate.services.UserService;
 
@@ -23,19 +21,12 @@ import com.creativate.masterizate.services.UserService;
  * Handles requests for the application home page.
  */
 @Controller
-//@RequestMapping("/register.jsp")
 public class RegisterController {
 	
 	private static final Logger logger = LoggerFactory.getLogger(RegisterController.class);
 	
 	@Autowired
     private UserService userManager;
-	/*UserValidator userValidator;
-	
-	@Autowired
-	public RegisterController(UserrValidator userValidator){
-		this.userValidator = userValidator;
-	}*/
 	
 	//Spring Security see this :
 	@RequestMapping(value = {"/", "/register"}, method = RequestMethod.GET)
@@ -67,24 +58,17 @@ public class RegisterController {
 	 
 			System.out.println("NOMBRE: " + name  +  "EMAIL: " + email);
 			ModelAndView model = new ModelAndView();
-			
+			logger.info("Comenzamos a consultar el tema");
+			Client client = new Client();
 			User usuario = new User();
 			usuario.setUsername(user);
 			usuario.setPassword(password);
+			System.out.println(usuario.toString());
 			
 			userManager.addUser(usuario); 
-			
-			/*if (error != null) {
-				model.addObject("error", "Invalid username and password!");
-			}
-	 
-			if (logout != null) {
-				model.addObject("msg", "You've been logged out successfully.");
-			}*/
 			model.setViewName("altaCorrecta");
 			
 			return model;
-	 
 		}
 		
 		@RequestMapping(value = { "/helloworld**" }, method = RequestMethod.GET)

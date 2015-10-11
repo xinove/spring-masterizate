@@ -1,24 +1,36 @@
 package com.creativate.masterizate.model.objects;
  
+import javax.persistence.Basic;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Table;
 
 import static javax.persistence.GenerationType.IDENTITY;
 
 import javax.persistence.Id;
-import javax.persistence.UniqueConstraint;
+import javax.validation.constraints.NotNull;
+//import javax.persistence.UniqueConstraint;
+import javax.validation.constraints.Size;
 
 @Entity
-@Table(name = "usuarios", catalog = "masterizate", uniqueConstraints = {
-		@UniqueConstraint(columnNames = "STOCK_NAME"),
-		@UniqueConstraint(columnNames = "STOCK_CODE") })
+@Table(name = "users", catalog = "masterizate"
+		//, uniqueConstraints = {
+		//@UniqueConstraint(columnNames = "STOCK_NAME"),
+		//@UniqueConstraint(columnNames = "STOCK_CODE") }
+)
 public class User {
  
 	@Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Basic(optional = false)
+    @Column(name = "id_user",unique=true, nullable = false)
 	private String id;
 	private String username;
+	
+	@NotNull
+    @Size(min = 6, max = 15)
 	private String password;
 
 	public User(){}

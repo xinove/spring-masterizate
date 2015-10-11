@@ -20,7 +20,7 @@ public class LoginController
   		@RequestParam(value = "error", required = false) String error,
   		@RequestParam(value = "logout", required = false) String logout) {
   		logger.info("Vale, usamos el correcto, pero que valores tenemos?. " + logout);
-		
+		System.out.println("Empezamos...");
   		ModelAndView model = new ModelAndView();
   		if (error != null) {
   			model.addObject("error", "Invalid username and password!");
@@ -29,10 +29,29 @@ public class LoginController
   		if (logout != null) {
   			model.addObject("msg", "You've been logged out successfully.");
   		}
-  		model.setViewName("lusuarios");
+  		model.setViewName("login");
    
   		return model;
    
   	}
+
+	@RequestMapping(value = "/login", method = RequestMethod.POST)
+	public ModelAndView login2(
+		@RequestParam(value = "error", required = false) String error,
+		@RequestParam(value = "logout", required = false) String logout) {
+		System.out.println("Contunuamos aqui...");
+
+		ModelAndView model = new ModelAndView();
+		if (error != null) {
+			model.addObject("error", "Invalid username and password!");
+		}
+ 
+		if (logout != null) {
+			model.addObject("msg", "You've been logged out successfully.");
+		}
+		model.setViewName("login");
+		return model;
+ 
+	}
   
 }

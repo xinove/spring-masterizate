@@ -13,36 +13,38 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.creativate.masterizate.model.UserDAO;
 import com.creativate.masterizate.model.objects.User;
+import com.creativate.masterizate.services.UserService;
  
 @Controller
 public class PerfilController
 {
 	private static final Logger logger = LoggerFactory.getLogger(PerfilController.class);
 
-	//@Autowired
-	//private UserService service;
+	@Autowired
+	private UserService service;
     
     //Spring Security see this :
-  	@RequestMapping(value = "/perfil", method = RequestMethod.GET)
+  	@RequestMapping(value = "/usuarios", method = RequestMethod.GET)
   	public ModelAndView perfil(
   		@RequestParam(value = "error", required = false) String error,
   		@RequestParam(value = "logout", required = false) String logout) {
   		logger.info("Vamos a GET listar los usuarios existentes en la BD que no existe xD");
 		
-  		
   		List<User> users = null;//service.listPerson();
-  				
-  		
+		System.out.println("empieza el tema...");
+
   		ModelAndView modelAndView = new ModelAndView();//"index");
+  		users = service.getAllUsers();
   		modelAndView.addObject("users", users );
-  		
+  		System.out.println(service.getAllUsers());
+
   		logger.info("Recorremos los Usuarios");
   		if (users != null){
 	  		for(User usuario : users){
-	  			logger.info("Usuario: " + usuario.getUsername());
+	  			System.out.println(usuario.toString());
 	  		}
   		}
-  		modelAndView.setViewName("perfil");
+  		modelAndView.setViewName("lusuarios");
 
   		return modelAndView;
    

@@ -7,7 +7,9 @@ import javax.annotation.PostConstruct;
 import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
+import org.springframework.transaction.annotation.Transactional;
 import org.hibernate.Hibernate;
+import org.hibernate.Query;
 import org.hibernate.SQLQuery;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
@@ -16,21 +18,20 @@ import org.hibernate.StatelessSession;
 
 
 
+
+
 import com.creativate.masterizate.model.objects.User;
 import com.creativate.masterizate.util.CustomHibernateDaoSupport;
 
 public class UserDAOImpl implements UserDAO {
 	
-    
-    //Current Session - no need to close (REVISAR)
+	@Autowired
     private SessionFactory sessionFactory;
-
-    @Autowired
+	
     public UserDAOImpl(SessionFactory sessionFactory) {
         this.sessionFactory = sessionFactory;
     }
 
-    @Autowired
     public UserDAOImpl() {
         this.sessionFactory = null;
     }
@@ -38,23 +39,30 @@ public class UserDAOImpl implements UserDAO {
     private Session currentSession() {
         return this.sessionFactory.getCurrentSession();
     }
-    
-   
+    @Transactional
 	public void save(User usuario){
-		getSessionFactory().getCurrentSession().save(usuario);
+		
+		if (sessionFactory.getCurrentSession() == null){
+			System.out.println("Esto es null, cohone!");	
+		
+		}
+		sessionFactory.getCurrentSession().save(usuario);
 	}
 	
+    @Transactional
 	public void update(User usuario){
-		getSessionFactory().getCurrentSession().update(usuario);
+		sessionFactory.getCurrentSession().update(usuario);
 	}
 	
 	public void delete(User usuario){
-		getSessionFactory().getCurrentSession().delete(usuario);
+		sessionFactory.getCurrentSession().delete(usuario);
 	}
-
+	
+    @Transactional
 	public List<User> getAllUsers(){
-		
-		return null;
+		// create query
+		Query query = sessionFactory.getCurrentSession().createQuery("FROM User");
+		return (List<User>)query.list();
 	}
 	
 	public User findById(Integer idUser){

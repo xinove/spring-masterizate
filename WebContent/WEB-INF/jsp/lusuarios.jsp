@@ -4,7 +4,7 @@
 <html>
 <body>
 	<h1>Pagina paga gestionar los usuarios</h1>		
-	<form name='perfilForm' id="form" action="/masterizate/perfil" method="POST">
+	<form name='perfilForm' id="form" action="/masterizate/usuarios" method="POST">
 		<input name="submit" type="submit" value="submit" />
 	</form>
 </body>

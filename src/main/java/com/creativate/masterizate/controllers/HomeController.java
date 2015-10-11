@@ -38,24 +38,4 @@ public class HomeController {
 		return "home";
 	}*/
 	
-	//Spring Security see this :
-	@RequestMapping(value = "/login", method = RequestMethod.POST)
-	public ModelAndView login2(
-		@RequestParam(value = "error", required = false) String error,
-		@RequestParam(value = "logout", required = false) String logout) {
- 
-		logger.info("Comenzamos a consultar el tema");
-
-		ModelAndView model = new ModelAndView();
-		if (error != null) {
-			model.addObject("error", "Invalid username and password!");
-		}
- 
-		if (logout != null) {
-			model.addObject("msg", "You've been logged out successfully.");
-		}
-		model.setViewName("lusuarios");
-		return model;
- 
-	}
 }

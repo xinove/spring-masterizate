@@ -49,7 +49,7 @@
 							</tr>
 							<tr>
 								<td>Contraseña:</td>
-								<td><input type="password" size="20" name="clave"></td>
+								<td><input type="password" size="20" name="pass"></td>
 							</tr>
 							<tr>
 								<td colspan="2" align="center"><input type="submit"
