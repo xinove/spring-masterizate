@@ -2,6 +2,7 @@
 
 <!DOCTYPE html>
 <html>
+<head>PERFIL</head>
 <body>
 	<h1>Title : ${title}</h1>	
 	<h1>Message : ${message}</h1>	

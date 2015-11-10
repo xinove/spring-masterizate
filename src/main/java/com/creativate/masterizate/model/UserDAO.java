@@ -17,6 +17,8 @@ public interface UserDAO {
     
     public List<User> getAllUsers();
     
+    public User findByUsername(String name);
+
 	public User findById(Integer idUser);
 	
 	public SessionFactory getSessionFactory();

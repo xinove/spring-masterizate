@@ -31,7 +31,6 @@ public class PerfilController
   		logger.info("Vamos a GET listar los usuarios existentes en la BD que no existe xD");
 		
   		List<User> users = null;//service.listPerson();
-		System.out.println("empieza el tema...");
 
   		ModelAndView modelAndView = new ModelAndView();//"index");
   		users = service.getAllUsers();

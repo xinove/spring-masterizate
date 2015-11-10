@@ -2,26 +2,16 @@ package com.creativate.masterizate.model;
 
 import java.util.List;
 
-import javax.annotation.PostConstruct;
-
 import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
-import org.hibernate.Hibernate;
+import org.hibernate.Criteria;
 import org.hibernate.Query;
 import org.hibernate.SQLQuery;
 import org.hibernate.Session;
-import org.hibernate.SessionFactory;
-import org.hibernate.StatelessSession;
- 
-
-
-
-
+import org.hibernate.criterion.Restrictions;
 
 import com.creativate.masterizate.model.objects.User;
-import com.creativate.masterizate.util.CustomHibernateDaoSupport;
 
 public class UserDAOImpl implements UserDAO {
 	
@@ -74,6 +64,13 @@ public class UserDAOImpl implements UserDAO {
 	      List list=query.list();
 		
 		return (User)list.get(0);
+	}
+	
+	public User findByUsername(String username){
+		
+		Criteria criteria = sessionFactory.getCurrentSession().createCriteria(User.class);
+        criteria.add(Restrictions.eq("username", username));
+        return (User) criteria.uniqueResult();
 	}
 	
 	public SessionFactory getSessionFactory() {

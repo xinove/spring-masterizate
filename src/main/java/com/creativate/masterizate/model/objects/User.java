@@ -32,11 +32,19 @@ public class User {
 	@NotNull
     @Size(min = 6, max = 15)
 	private String password;
+	private int enabled;
 
 	public User(){}
     public User( String username, String password){
         this.username=username;
         this.password=password;
+        enabled = 1;
+    }
+    
+    public User( String username, String password, int enabled ){
+        this.username=username;
+        this.password=password;
+        this.enabled = enabled;
     }
 
 	public String getUsername() {
@@ -64,6 +72,12 @@ public class User {
 		this.id = id;
 	}
 	
+	public int getEnabled() {
+		return enabled;
+	}
+	public void setEnabled(int enabled) {
+		this.enabled = enabled;
+	}
 	@Override
     public String toString() {
         return String.format(

@@ -43,5 +43,10 @@ public class UserServiceImpl implements UserService {
 	public void setUserDAO(UserDAO userDAO) {
 		this.userDAO = userDAO;
 	}
+    
+    @Transactional
+    public User getUser(String username){
+    	return userDAO.findByUsername(username);
+    }
 
 }

@@ -15,6 +15,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.creativate.masterizate.model.objects.Client;
 import com.creativate.masterizate.model.objects.User;
+import com.creativate.masterizate.services.ClientService;
 import com.creativate.masterizate.services.UserService;
 
 /**
@@ -27,6 +28,9 @@ public class RegisterController {
 	
 	@Autowired
     private UserService userManager;
+	
+	@Autowired
+    private ClientService clientManager;
 	
 	//Spring Security see this :
 	@RequestMapping(value = {"/", "/register"}, method = RequestMethod.GET)
@@ -53,19 +57,31 @@ public class RegisterController {
 		@RequestMapping(value = {"/", "/register"}, method = RequestMethod.POST)
 		public ModelAndView registerGet(@RequestParam(value = "nombre", required = false) String name, 
 										@RequestParam(value = "usuario", required = false) String user, 
+										@RequestParam(value = "address", required = false) String address, 
+										@RequestParam(value = "apellidos", required = false) String surName, 
 										@RequestParam(value = "pass", required = false) String password, 
 										@RequestParam(value = "correo", required = false) String email) {
 	 
-			System.out.println("NOMBRE: " + name  +  "EMAIL: " + email);
 			ModelAndView model = new ModelAndView();
 			logger.info("Comenzamos a consultar el tema");
-			Client client = new Client();
+			
 			User usuario = new User();
 			usuario.setUsername(user);
 			usuario.setPassword(password);
-			System.out.println(usuario.toString());
 			
 			userManager.addUser(usuario); 
+			
+			usuario = userManager.getUser(user);
+			System.out.println(usuario.toString());
+
+			Client client = new Client();
+			client.setEmail(email);
+			client.setAddress(address);
+			client.setSurName(surName);
+			client.setName(name);
+			client.setIdUser(usuario.getId());
+			
+			clientManager.add(client);
 			model.setViewName("altaCorrecta");
 			
 			return model;

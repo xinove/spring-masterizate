@@ -32,12 +32,16 @@
 								<td><input type="text" size="20" name="nombre"></td>
 							</tr>
 							<tr>
-								<td>Apellido:</td>
-								<td><input type="text" size="20" name="apellido"></td>
+								<td>Apellidos:</td>
+								<td><input type="text" size="20" name="apellidos"></td>
 							</tr>
 							<tr>
 								<td>Edad:</td>
 								<td><input type="text" size="20" name="edad"></td>
+							</tr>
+							<tr>
+								<td>Dirección:</td>
+								<td><input type="text" size="100" name="address"></td>
 							</tr>
 							<tr>
 								<td>Correo:</td>
