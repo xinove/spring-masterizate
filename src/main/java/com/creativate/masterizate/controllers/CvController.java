@@ -16,14 +16,14 @@ import com.creativate.masterizate.model.objects.User;
 import com.creativate.masterizate.services.UserService;
  
 @Controller
-public class PerfilController
+public class CvController
 {
 	private static final Logger logger = LoggerFactory.getLogger(PerfilController.class);
 
 	@Autowired
 	private UserService service;
     
-    //Spring Security see this :
+    /*//Spring Security see this :
   	@RequestMapping(value = "/usuarios", method = RequestMethod.GET)
   	public ModelAndView perfil(
   		@RequestParam(value = "error", required = false) String error,
@@ -74,37 +74,24 @@ public class PerfilController
   	public ModelAndView curriculum(
   		@RequestParam(value = "error", required = false) String error,
   		@RequestParam(value = "logout", required = false) String logout) {
-
-  		ModelAndView modelAndView = new ModelAndView();//"index");
-  		logger.info("Recorremos los Curriculums... (aun no)");
-  		
-  		modelAndView.setViewName("curriculum");
-  		return modelAndView;
-   
-  	}
-  	//Spring Security see this :
-  	@RequestMapping(value = "/curriculum", method = RequestMethod.POST)
-  	public ModelAndView curriculumPost(
-  			@RequestParam(value = "error", required = false) String error,
-  			@RequestParam(value = "logout", required = false) String logout) {
-  		logger.info("Vamos a POST listar los usuarios existentes en la BD que no existe xD");
-  		
+  		logger.info("Vamos a GET listar los usuarios existentes en la BD que no existe xD");
+		
   		List<User> users = null;//service.listPerson();
-  		
+
   		ModelAndView modelAndView = new ModelAndView();//"index");
   		users = service.getAllUsers();
   		modelAndView.addObject("users", users );
   		System.out.println(service.getAllUsers());
-  		
+
   		logger.info("Recorremos los Usuarios");
   		if (users != null){
-  			for(User usuario : users){
-  				System.out.println(usuario.toString());
-  			}
+	  		for(User usuario : users){
+	  			System.out.println(usuario.toString());
+	  		}
   		}
-  		modelAndView.setViewName("helloworld");
-  		
+  		modelAndView.setViewName("lusuarios");
+
   		return modelAndView;
-  		
-  	}
+   
+  	}*/
 }

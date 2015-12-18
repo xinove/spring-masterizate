@@ -49,6 +49,10 @@ public class Client {
 	String address;
 	@Column(name = "subscription_date")
 	Date subscriptionDate;
+
+	@Column(name = "imagen")
+	byte[] foto;
+	
 	
 	public Date getSubscriptionDate() {
 		return subscriptionDate;
@@ -105,6 +109,12 @@ public class Client {
 		this.address = address;
 	}
 
+	public byte[] getFoto() {
+		return foto;
+	}
+	public void setFoto(byte[] foto) {
+		this.foto = foto;
+	}
 	@Override
     public String toString() {
         return String.format(

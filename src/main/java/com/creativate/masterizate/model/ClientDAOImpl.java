@@ -34,11 +34,6 @@ public class ClientDAOImpl implements ClientDAO {
     }
     @Transactional
 	public void save(Client client){
-		
-		if (sessionFactory.getCurrentSession() == null){
-			System.out.println("Esto es null, cohone!");	
-		
-		}
 		sessionFactory.getCurrentSession().save(client);
 	}
 	

@@ -1,6 +1,7 @@
 package com.creativate.masterizate.controllers;
 
 import java.text.DateFormat;
+import java.util.Calendar;
 import java.util.Date;
 import java.util.Locale;
 
@@ -63,8 +64,6 @@ public class RegisterController {
 										@RequestParam(value = "correo", required = false) String email) {
 	 
 			ModelAndView model = new ModelAndView();
-			logger.info("Comenzamos a consultar el tema");
-			
 			User usuario = new User();
 			usuario.setUsername(user);
 			usuario.setPassword(password);
@@ -81,6 +80,14 @@ public class RegisterController {
 			client.setName(name);
 			client.setIdUser(usuario.getId());
 			
+			Calendar myCal = Calendar.getInstance();
+//			myCal.set(Calendar.YEAR, theYear);
+//			myCal.set(Calendar.MONTH, theMonth);
+//			myCal.set(Calendar.DAY_OF_MONTH, theDay);
+			Date subscriptionDate = myCal.getTime();
+			
+			//Date subscriptionDate = new GregorianCalendar(theYear, theMonth, theDay).getTime():
+			client.setSubscriptionDate(subscriptionDate);
 			clientManager.add(client);
 			model.setViewName("altaCorrecta");
 			
@@ -89,7 +96,6 @@ public class RegisterController {
 		
 		@RequestMapping(value = { "/helloworld**" }, method = RequestMethod.GET)
 		 public ModelAndView welcomePage() {
-			logger.info("Supongo que deberia entrar aki...");
 			 ModelAndView model = new ModelAndView();
 			 model.addObject("title", "Spring Security 3.2.3 Hello World Application");
 			 model.addObject("message", "Welcome Page !");

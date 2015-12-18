@@ -47,14 +47,18 @@ public class LoginController
 		@RequestParam(value = "password", required = false) String password,
 		@RequestParam(value = "error", required = false) String error,
 		@RequestParam(value = "logout", required = false) String logout) {
-		System.out.println("Contunuamos aqui...");
+
 		ModelAndView modelAndView = new ModelAndView();//"index");
   		User usuario = service.getUser(username);
-  		if(password.equals(usuario.getPassword())){
-  			modelAndView.addObject("users", usuario );
-  			modelAndView.setViewName("perfil");
-  			System.out.println("Vamos a Perfil?...");
-  		}else{
+  		System.out.println("Password?" + password == null);
+
+  		System.out.println("Usuario?" + usuario == null);
+  		if (usuario != null) {
+	  		if(password.equals(usuario.getPassword())){
+	  			modelAndView.addObject("usuario", usuario );
+	  			modelAndView.setViewName("perfil");
+	  		}
+	  	}else{
   			modelAndView.addObject("error", "Invalid username and password!");
   			modelAndView.setViewName("login");
   			System.out.println("Vamos a Login?...");
